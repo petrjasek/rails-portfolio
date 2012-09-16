@@ -1,0 +1,32 @@
+<h1>Andrea Kubná Architekt</h1>
+
+<section id="featured-projects">
+    <ul>
+        <% @projects.each do |project| %>
+        <li><article>
+            <header>
+                <h2><%= link_to project.title, project %></h2>
+            </header>
+            <div><%= project.teaser %></div>
+            <% for image in project.images %>
+            <figure>
+                <%= image_tag image.file.url(:detail) %>
+            </figure>
+            <% end %>
+        </article></li>
+        <% end %>
+    </ul>
+</section>
+
+<section id="featured-items">
+    <ol>
+        <% @items.each do |item| %>
+        <li><article>
+            <header>
+                <h2><%= link_to item.title, item %></h2>
+            </header>
+            <div><%= item.teaser %></div>
+        </article></li>
+        <% end %>
+    </ol>
+</section>

@@ -1,0 +1,43 @@
+<%= form_for(@project, :html => { :multipart => true }) do |f| %>
+    <% if @project.errors.any? %>
+    <div id="error_explanation">
+        <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+        <ul>
+            <% @project.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+
+    <dl>
+        <dt><%= f.label :title %></dt>
+        <dd><%= f.text_field :title %></dd>
+    </dl>
+
+    <dl>
+        <dt><%= f.label :teaser %></dt>
+        <dd><%= f.text_field :teaser %></dd>
+    </dl>
+
+    <dl>
+        <dt><%= f.label :lead %></dt>
+        <dd><%= f.text_area :lead %></dd>
+    </dl>
+
+    <dl>
+        <dt><%= f.label :content %></dt>
+        <dd><%= f.text_area :content %></dd>
+    </dl>
+
+    <ol>
+        <% for image in @project.images %>
+        <li><%= image_tag image.file.url(:thumb) %></li>
+        <% end %>
+    </ol>
+
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+<% end %>

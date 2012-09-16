@@ -1,0 +1,30 @@
+<h1>Listing projects</h1>
+
+<section>
+<ul>
+    <% @projects.each do |project| %>
+    <li><article>
+        <header>
+            <h2><%= project.title %></h2>
+        </header>
+
+        <% project.images.find(:first) do |image| %>
+        <figure>
+            <%= image_tag image.file.url(:teaser) %>
+        </figure>
+        <% end %>
+
+        <p><%= project.teaser %></p>
+
+        <footer>
+            <%= link_to 'Show', project %>
+            <%= link_to 'Edit', edit_project_path(project) %>
+            <%= link_to 'Add image', new_project_image_path(project) %>
+            <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </footer>
+    </article></li>
+    <% end %>
+</ul>
+</section>
+
+<%= link_to 'New Project', new_project_path %>

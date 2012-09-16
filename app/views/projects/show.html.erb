@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<article>
+    <header>
+        <h1><%= @project.title %></h1>
+    </header>
+
+    <div id="lead" class="content"><%= @project.lead %></div>
+
+    <% for image in @project.images %>
+    <figure>
+        <%= image_tag image.file.url(:detail) %>
+        <p><%= image.caption %></p>
+    </figure>
+    <% end %>
+
+    <div id="content" class="content"><%= @project.content %></div>
+</article>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
