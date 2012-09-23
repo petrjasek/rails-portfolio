@@ -31,13 +31,27 @@
         <dd><%= f.text_area :content %></dd>
     </dl>
 
-    <ol>
-        <% for image in @project.images %>
-        <li><%= image_tag image.file.url(:thumb) %></li>
-        <% end %>
+    <ol id="images" class="images-list">
+    <%= f.fields_for :images do |builder| %>
+    <li id="image-<%= builder.object.id %>">
+        <%= render "form_image", :f => builder %>
+    </li>
+    <% end %>
     </ol>
 
     <div class="actions">
         <%= f.submit %>
     </div>
 <% end %>
+
+<script>
+    $(function() {
+        var sortable = $('#images').sortable({items: '> li'});
+        $('form.edit_project').submit(function() {
+            var images = sortable.sortable("toArray");
+            for (var i = 0; i < images.length; i++) {
+                input = $('#' + images[i]).find('input:hidden[name*="rank"]').val(i);
+            }
+        });
+    });
+</script>

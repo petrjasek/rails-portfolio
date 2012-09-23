@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120916090659) do
+ActiveRecord::Schema.define(:version => 20120916130018) do
 
   create_table "images", :force => true do |t|
     t.string   "title"
@@ -24,7 +24,10 @@ ActiveRecord::Schema.define(:version => 20120916090659) do
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
+    t.integer  "rank"
   end
+
+  add_index "images", ["rank"], :name => "index_images_on_rank"
 
   create_table "items", :force => true do |t|
     t.string   "title"
