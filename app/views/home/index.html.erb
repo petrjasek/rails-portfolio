@@ -5,10 +5,10 @@
         <% @projects.each do |project| %>
         <li><article>
             <header>
-                <h2><%= link_to project.title, project %></h2>
+                <h2><%= link_to project.item.title, project %></h2>
             </header>
-            <div><%= project.teaser %></div>
-            <% for image in project.images %>
+            <div><%= project.item.teaser %></div>
+            <% for image in project.item.images %>
             <figure>
                 <%= image_tag image.file.url(:detail) %>
             </figure>
@@ -20,12 +20,12 @@
 
 <section id="featured-items">
     <ol>
-        <% @items.each do |item| %>
+        <% @news.each do |news| %>
         <li><article>
             <header>
-                <h2><%= link_to item.title, item %></h2>
+                <h2><%= link_to news.item.title, news %></h2>
             </header>
-            <div><%= item.teaser %></div>
+            <div><%= news.item.teaser %></div>
         </article></li>
         <% end %>
     </ol>

@@ -3,18 +3,18 @@
     <% @projects.each do |project| %>
     <li><article>
         <header>
-        <h2><%= link_to project.title, project %></h2>
+        <h2><%= link_to project.item.title, project %></h2>
         </header>
 
-        <% project.images.find(:first) do |image| %>
+        <% if project.item.images.first %>
         <figure>
         <%= link_to project do %>
-            <%= image_tag image.file.url(:teaser) %>
+            <%= image_tag project.item.images.first.file.url(:teaser) %>
         <% end %>
         </figure>
         <% end %>
 
-        <p><%= project.teaser %></p>
+        <p><%= project.item.teaser %></p>
 
         <footer>
             <%= link_to 'Edit', edit_project_path(project) %>

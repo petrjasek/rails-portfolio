@@ -1,0 +1,33 @@
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<%= f.label :teaser %>
+<%= f.text_area :teaser, :rows => 5, :class => 'input-xxlarge' %>
+
+<%= f.label :lead %>
+<%= f.text_area :lead, :rows => 5, :class => 'input-xxlarge' %>
+
+<%= f.label :content %>
+<%= f.text_area :content, :rows => 8, :class => 'input-xxlarge' %>
+
+<ol id="images" class="images-list">
+<%= f.fields_for :images do |images_fields| %>
+<li class="row">
+    <%= images_fields.hidden_field :id %>
+    <%= render "form_image", :f => images_fields %>
+</li>
+<% end %>
+</ol>
+
+<script>
+    $(function() {
+        $('#images').sortable({
+            items: '> li',
+            update: function(e, ui) {
+                $('li', e.target).each(function(i, li) {
+                    $('input:hidden[name*="rank"]', li).val(i);
+                });
+            }
+        })
+    });
+</script>

@@ -1,22 +1,14 @@
-<% if f.object.id? %>
-    <%= image_tag f.object.file.url(:thumb) %>
-<% else %>
-    <h3>New image</h3>
-<% end %>
-
 <%= f.hidden_field :rank %>
 
-<dl>
-    <dt><%= f.label :title %></dt>
-    <dd><%= f.text_field :title %></dd>
-</dl>
+<% if f.object.id? %>
+<div class="span2">
+        <%= image_tag f.object.file.url(:thumb) %>
+</div>
+<% end %>
+<div class="span4">
+    <%= f.label :caption %>
+    <%= f.text_field :caption %>
 
-<dl>
-    <dt><%= f.label :caption %></dt>
-    <dd><%= f.text_field :caption %></dd>
-</dl>
-
-<dl>
-    <dt><%= f.label :file %></dt>
-    <dd><%= f.file_field :file %></dd>
-</dl>
+    <%= f.label :file %>
+    <%= f.file_field :file %>
+</div>

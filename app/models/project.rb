@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-    has_many :images, :as => :imageable, :order => :rank
-    attr_accessible :title, :teaser, :lead, :content, :images, :images_attributes
-    accepts_nested_attributes_for :images
+    belongs_to :item, :validate => true
+    attr_accessible :item, :authors, :collaborators, :year, :item_attributes
+    accepts_nested_attributes_for :item
 end
